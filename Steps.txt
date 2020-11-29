@@ -1,0 +1,15 @@
+1. Created python app that reads configurations from external json file
+2. Created Dockerfile that gets us to an image which can be executed with a parameter
+from intservice directory> docker build -t intservice .
+docker run intservice -w great
+---
+[main.py:18] INFO - Parameters passed are Namespace(word='good')
+[send.py:5] INFO - Requested sentiment for good
+{"sentiment":"positive","intensity":1}
+---
+
+Started jenkins instance:
+mkdir jenkins
+chmod -R 777 jenkins
+docker run -v jenkins:/var/jenkins_home -p 8080:8080 jenkinsci/jenkins
+Created a new job

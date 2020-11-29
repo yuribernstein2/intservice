@@ -1,6 +1,8 @@
 import http.client
+from logs import logger
 
 def send(key, host, message):
+    logger.info("Requested sentiment for " + message)
     conn = http.client.HTTPSConnection("smirow-meanings-v1.p.rapidapi.com")
     payload = "sample=" + message + "&language=eng"
 
