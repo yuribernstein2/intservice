@@ -4,7 +4,10 @@ pipeline {
     stages {
         stage('Hello') {
             steps {
-                echo 'Hello World'
+                dir('CoolNewDirectory') {
+                    git branch: 'main', credentialsId: 'github_cred', url: 'https://github.com/yuribernstein2/intservice.git'
+                    echo 'Hello World'
+                }
             }
         }
         stage('Check Working Directory') {
