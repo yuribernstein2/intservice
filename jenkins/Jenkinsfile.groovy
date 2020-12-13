@@ -20,7 +20,7 @@ pipeline {
             steps {
                 dir('intservice/tests') {
                     script{
-                        sh "sh ./basic.tests.sh"
+                        sh "sh ./basic.test.sh"
                     }
                 }
             }
