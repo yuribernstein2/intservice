@@ -1,28 +1,72 @@
 def userInput
 
 pipeline {
-    agent any
+    agent docker-node
 
     stages {
-        stage('Input') {
+        stage('Build Docker image') {
             steps {
-                script {
-                    userInput = input message: 'Please provide your input', ok: 'confirm', parameters: [choice(name: '', choices: ['option 1', 'option2'], description: '')]
+                dir('intservice'){
+                    script {
+                        sh "docker build -t intService ."
+                    }
                 }
             }
         }
-        stage('Hello') {
+        stage('Test Docker image') {
             steps {
-                dir('CoolNewDirectory') {
-                    git branch: 'main', credentialsId: 'github_cred', url: 'https://github.com/yuribernstein2/intservice.git'
-                    echo 'Hello World'
+                dir('intservice/tests') {
+                    script{
+                        sh "sh ./basic.tests.sh"
+                    }
                 }
+            }
+        }
+        stage('Upload image to repository') {
+            steps {
+                sh "pwd"
             }
         }
         stage('Print Inputed string') {
             steps {
-                println("Input was " + userInput)
+                println("Empty stage")
             }
         }
     }
 }
+
+
+
+
+
+
+
+//def userInput
+//
+//pipeline {
+//
+//    label docker-node
+//
+//    stages {
+//        stage('Input') {
+//            steps {
+//                script {
+//                    userInput = input message: 'Please provide your input', ok: 'confirm', parameters: [choice(name: '', choices: ['option 1', 'option2'], description: '')]
+//                }
+//            }
+//        }
+//        stage('Hello') {
+//            steps {
+//                dir('CoolNewDirectory') {
+//                    git branch: 'main', credentialsId: 'github_cred', url: 'https://github.com/yuribernstein2/intservice.git'
+//                    echo 'Hello World'
+//                }
+//            }
+//        }
+//        stage('Print Inputed string') {
+//            steps {
+//                println("Input was " + userInput)
+//            }
+//        }
+//    }
+//}
