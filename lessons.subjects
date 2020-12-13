@@ -1,3 +1,13 @@
 13.12.2020
 sudo docker run --restart always --name jenkins -d -v /var/jenkins_home:/var/jenkins_home -p 8080:8080 jenkins/jenkins
 // tells docker to restart the container on startup / failure unless it was stoppeed manually using docker stop command
+
+SCM tools:
+
+chef
+puppet
+salt stack
+ansible agentless / ssh / python / simple
+
+
+terraform - immutable infra

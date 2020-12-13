@@ -1,8 +1,8 @@
 ---
 name: int service deployment
-hosts: all
-tasks:
+hosts: intService
 
+tasks:
   - name: validate docker service
      service:
       name: docker
@@ -14,6 +14,5 @@ tasks:
         name: int_service
         image: "docker.io/intservice:{{ version }}"
         state: running
-
 
 
