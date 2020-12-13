@@ -24,6 +24,7 @@ pipeline {
                             sh "sh ./basic.test.sh"
                         } catch (err) {
                             println("Error thrown on test file execution")
+                            currentBuild.result = 'ABORTED'
                         }
                     }
                 }
