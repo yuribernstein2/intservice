@@ -25,6 +25,7 @@ pipeline {
                         } catch (err) {
                             println("Error thrown on test file execution")
                             currentBuild.result = 'ABORTED'
+                            error('Error thrown on test file execution')
                         }
                     }
                 }
