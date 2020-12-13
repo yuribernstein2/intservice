@@ -11,7 +11,7 @@ pipeline {
             steps {
                 dir('intservice'){
                     script {
-                        sh "docker build -t intservice ."
+                        sh "sudo docker build -t intservice ."
                     }
                 }
             }
