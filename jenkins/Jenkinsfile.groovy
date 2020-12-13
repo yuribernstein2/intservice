@@ -21,7 +21,7 @@ pipeline {
                 dir('intservice/tests') {
                     script{
                         try {
-                            sh "sh ./basic.test.sh"
+                            sh "./basic.test.sh"
                         } catch (err) {
                             println("Error thrown on test file execution")
                             currentBuild.result = 'ABORTED'
