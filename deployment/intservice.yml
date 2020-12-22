@@ -1,6 +1,6 @@
 ---
 - name: int service deployment
-  hosts:
+  hosts: intService
   become: yes
 
   tasks:
