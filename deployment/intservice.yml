@@ -1,6 +1,6 @@
 ---
 - name: int service deployment
-  hosts: intService
+  hosts:
 
   tasks:
     - name: Make sure docker is installed
@@ -16,24 +16,26 @@
         state: started
       become: yes
 
-    - name: export image
-      shell: "docker save intservice:latest > /tmp/intservice.tar"
-      become: yes
-      delegate_to: 127.0.0.1
+    - name: Push the docker ima
 
-    - name: set permissions
-      file:
-        path: /tmp/intservice.tar
-        owner: ubuntu
-        group: ubuntu
-        mode: '0777'
-      become: yes
-      delegate_to: 127.0.0.1
-
-    - name: Copy Docker image to remote location
-      copy:
-        src: /tmp/intservice.tar
-        dest: /tmp/intservice.tar
+#    - name: export image
+#      shell: "docker save intservice:latest > /tmp/intservice.tar"
+#      become: yes
+#      delegate_to: 127.0.0.1
+#
+#    - name: set permissions
+#      file:
+#        path: /tmp/intservice.tar
+#        owner: ubuntu
+#        group: ubuntu
+#        mode: '0777'
+#      become: yes
+#      delegate_to: 127.0.0.1
+#
+#    - name: Copy Docker image to remote location
+#      copy:
+#        src: /tmp/intservice.tar
+#        dest: /tmp/intservice.tar
 
     - name: Load Docker image
       docker_image:
