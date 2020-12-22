@@ -45,23 +45,11 @@ pipeline {
         }
         stage('Deploy to Prod') {
             steps {
-                println("Empty stage")
-
-//                1. make sure docker engine is installed and running
-//                apt -y install docker.io
-//                systemctl start docker
-//                systemctl enable docker
-//
-//                2. copy the docker image to the target server
-//                docker save intservice:latest > /var/jenkins_home/intService/intservice.tar    || docker.hub docker push docker.io/intservice/intservice:latest
-//                scp "/var/jenkins_home/intService/intservice.tar ubuntu@${prod_server_ip}:/tmp"
-//
-//                3. run the container
-//                ssh ubuntu@${prod_server_ip} sudo docker load < /tmp/intservice.tar
-//                ssh ubuntu@${prod_server_ip} sudo docker run -d intservice
-//
-//                4. make sure it is executed correctly
-//                ./bash.test.sh
+               script {
+                   dir('deployment') {
+                       sh "ansible-playbook -i inventory.ini intservice.yml --extra-vars tag=${latestVersion}-${lastCommit}"
+                   }
+               }
 
             }
         }
