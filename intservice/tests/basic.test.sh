@@ -13,7 +13,7 @@ check_result () {
 }
 
 for sentiment in positive negative neutral; do
-  sudo docker run intservice:$TAG -w $sentiment | grep $sentiment
+  sudo docker run $TAG -w $sentiment | grep $sentiment
   check_result $sentiment
 done
 
