@@ -12,10 +12,10 @@ pipeline {
                 dir('intservice'){
                     script {
                         println("Getting commit id and latest Version")
-                        lastCommit = sh script: "git log | head -1 | awk '{print \$2}' | cut -c1-6", returnStdout: true
-                        latestVersion = sh script: "git branch -r | cut -d '/' -f2 | grep 0. | sort -r | head -1", returnStdout: true
-                        lastCommit.trim("\n")
-                        latestVersion.trim("\n")
+                        _lastCommit = sh script: "git log | head -1 | awk '{print \$2}' | cut -c1-6", returnStdout: true
+                        _latestVersion = sh script: "git branch -r | cut -d '/' -f2 | grep 0. | sort -r | head -1", returnStdout: true
+                        lastCommit = _lastCommit.trim()
+                        latestVersion = _latestVersion.trim()
                         println("Latest Version seen is ${latestVersion}")
                         println("Latest commit seen is ${lastCommit}")
                         sh "sudo docker build -t yuribernsetin/intservice:${latestVersion}-${lastCommit} . "
