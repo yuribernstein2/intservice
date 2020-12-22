@@ -40,7 +40,7 @@ pipeline {
         }
         stage('Upload image to repository') {
             steps {
-                sh ""
+                sh "sudo docker push yuribernsetin/intservice:${latestVersion}-${lastCommit}"
             }
         }
         stage('Deploy to Prod') {
