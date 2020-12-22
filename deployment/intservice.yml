@@ -1,6 +1,7 @@
 ---
 - name: int service deployment
   hosts:
+  become: yes
 
   tasks:
     - name: Make sure docker is installed
@@ -8,23 +9,14 @@
         name: docker.io
         state: present
         update_cache: yes
-      become: yes
 
     - name: Start  docker service
       service:
         name: docker
         state: started
-      become: yes
 
     - name: Start intservice container
       community.general.docker_container:
         name: "intservice:{{ tag }}"
         image: "yuribernsetin/intservice:{{ tag }}"
         command: ["-w", "amazing"]
-
-    - name: Load Docker image
-      docker_image:
-        name: intservice
-        tag: latest
-        load_path: /tmp/intservice.tar
-      become: yes
