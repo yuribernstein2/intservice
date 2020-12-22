@@ -16,7 +16,5 @@
         state: started
 
     - name: Start intservice container
-      community.general.docker_container:
-        name: "intservice:{{ tag }}"
-        image: "yuribernsetin/intservice:{{ tag }}"
-        command: ["-w", "amazing"]
+      shell: "docker run yuribernsetin/intservice:{{ tag }} -w perfect"
+
