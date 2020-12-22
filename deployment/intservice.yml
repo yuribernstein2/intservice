@@ -16,8 +16,6 @@
         state: started
       become: yes
 
-    - name: Push the docker ima
-
     - name: Start intservice container
       community.general.docker_container:
         name: "intservice:{{ tag }}"
