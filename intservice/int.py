@@ -12,7 +12,7 @@ def load_config():
         host = configs['configurations']['host']
         return key, host
 
-@app.route('/', methods=['POST'], host='0.0.0.0')
+@app.route('/', methods=['POST'])
 
 
 def main():
