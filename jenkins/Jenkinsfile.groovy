@@ -47,7 +47,7 @@ pipeline {
             steps {
                script {
                    dir('deployment') {
-                       sh "ansible-playbook -i inventory.ini intservice.yml --extra-vars tag=${latestVersion}-${lastCommit}"
+                       sh "ansible-playbook -i inventory.ini intservice.yml --extra-vars tag=yuribernsetin/intservice:${latestVersion}-${lastCommit}"
                    }
                }
 

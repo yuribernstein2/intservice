@@ -12,8 +12,12 @@ check_result () {
   fi
 }
 
+containerName=$(echo $TAG | cut -d'-' -f2)
+
+docker run -d -p 5000:5000 --name $containerName $TAG
+
 for sentiment in positive negative neutral; do
-  sudo docker run $TAG -w $sentiment | grep $sentiment
+  curl -X POST --header "Content-Type: application/json" --data '{"word":"'$sentiment'"}' http://localhost:5000 | grep $sentiment
   check_result $sentiment
 done
 

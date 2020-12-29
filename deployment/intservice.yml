@@ -16,5 +16,5 @@
         state: started
 
     - name: Start intservice container
-      shell: "docker run yuribernsetin/intservice:{{ tag }} -w perfect"
+      shell: "docker run -p 5000:5000 -d --restart always yuribernsetin/intservice:{{ tag }}"
 
