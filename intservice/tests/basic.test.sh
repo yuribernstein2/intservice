@@ -19,7 +19,7 @@ sudo docker rm -f $(sudo docker ps -aq)
 sudo docker run -d -p 5000:5000 --name $containerName $TAG
 sleep 5
 for sentiment in positive negative neutral; do
-  curl -X POST --header "Content-Type: application/json" --data '{"word":"'$sentiment'"}' http://localhost:5000 | grep $sentiment
+  curl -s -X POST --header "Content-Type: application/json" --data '{"word":"'$sentiment'"}' http://localhost:5000 | grep $sentiment
   check_result $sentiment
 done
 
