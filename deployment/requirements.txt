@@ -1,3 +1,1 @@
-ansible issues:
-failed on docker_image module since required docker-py
-docker-py has to be installed using pip3 since ansible been run with -e ansible_python_interpreter=/usr/bin/python3
+
